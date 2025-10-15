@@ -1,0 +1,58 @@
+    Python:
+          class Solution(object):
+    def merge(self, intervals):
+        """
+        :type intervals: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        intervals.sort()
+        merged = []
+
+        for interval in intervals:
+            if not merged or merged[-1][1] < interval[0]:
+                merged.append(interval)
+            else:
+                merged[-1][1] = max(merged[-1][1], interval[1])
+        return merged
+
+    C++:
+        class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        sort(intervals.begin(),intervals.end());
+        vector<vector<int>> merged;
+
+        for(auto& interval : intervals)
+        {
+            if(merged.empty() || merged.back()[1] < interval[0])
+            {
+                merged.push_back(interval);
+            }
+            else
+            {
+                merged.back()[1] = max(merged.back()[1], interval[1]);
+            }
+        }
+        return merged;
+    }
+  C#:
+    public class Solution {
+      public int[][] Merge(int[][] intervals) {
+          List<int[]> merged = new List<int[]>();
+
+          Array.Sort(intervals, (a,b) => a[0].CompareTo(b[0]));
+
+          foreach (var interval in intervals)
+          {
+              if(merged.Count == 0 || merged[merged.Count -1][1] < interval[0])
+              {
+                  merged.Add(interval);
+              }
+              else
+              {
+                  merged[merged.Count -1][1] = Math.Max(merged[merged.Count -1][1], interval[1]);
+              }
+          }
+          return merged.ToArray();
+        }
+    }
