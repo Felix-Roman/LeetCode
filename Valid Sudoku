@@ -1,0 +1,81 @@
+Here is my working C# solution for the Valid Sudoku problem on LeetCode!
+
+public class Solution {
+    public bool IsValidSudoku(char[][] board) {
+        for(int rows = 0; rows < 9; rows++)
+        {
+            HashSet<char> seen = new HashSet<char>();
+            
+            for(int columns = 0; columns < 9; columns++)
+            {
+                char current = board[rows][columns];
+                
+                if(current == '.')
+                {
+                    continue;
+                }
+                
+                if(seen.Contains(current))
+                {
+                    return false;
+                }
+                
+                seen.Add(current);
+            }
+        }
+        
+        for(int columns = 0; columns < 9; columns++)
+        {
+            HashSet<char> seen = new HashSet<char>();
+            for(int rows = 0; rows < 9; rows++)
+            {
+                char current = board[rows][columns];
+                
+                if(current == '.')
+                {
+                    continue;
+                }
+                
+                if(seen.Contains(current))
+                {
+                    return false;
+                }
+                
+                seen.Add(current);
+            }
+        }
+        
+        for(int boxRowStart = 0; boxRowStart < 9; boxRowStart +=3)
+        {
+            for(int boxColStart = 0; boxColStart < 9; boxColStart +=3)
+            {
+                HashSet<char> seen = new HashSet<char>();
+                
+                for(int rowOffset = 0; rowOffset < 3; rowOffset++)
+                {
+                    for(int colOffset = 0; colOffset < 3; colOffset++)
+                    {
+                        int row = boxRowStart + rowOffset;
+                        int col = boxColStart + colOffset;
+                        
+                        char current = board[row][col];
+                        
+                        if(current == '.')
+                        {
+                            continue;
+                        }
+                        
+                        if(seen.Contains(current))
+                        {
+                            return false;
+                        }
+                        
+                        seen.Add(current);
+                    }
+                }
+            }
+        }
+        
+        return true;
+    }
+}
