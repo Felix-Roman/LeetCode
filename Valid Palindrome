@@ -1,0 +1,33 @@
+Here is my C# solution for the Valid Palindrone question on LeetCode!
+
+public class Solution {
+    public bool IsPalindrome(string s) {
+        if(s == "")
+        {
+            return true;
+        }
+        string p = "";
+        foreach(char c in s)
+        {
+            if(char.IsLetterOrDigit(c))
+            {
+                p += char.ToLower(c);
+            }
+        }
+        
+        int left = 0;
+        int right = p.Length -1;
+        
+        while(left < right)
+        {
+            if(p[left] != p[right])
+            {
+                return false;
+            }
+            
+            left++;
+            right--;
+        }
+        return true;
+    }
+}
