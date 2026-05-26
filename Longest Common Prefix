@@ -1,0 +1,24 @@
+Here is my C# solution of the Longest Common Prefix question on LeetCode!
+
+public class Solution {
+    public string LongestCommonPrefix(string[] strs) {
+        string p = "";
+        for(int i = 0; i < strs[0].Length; i++)
+        {
+            for(int n = 1; n <strs.Length; n++)
+            {
+                if(i >= strs[n].Length)
+                {
+                    return p;
+                }
+                if(strs[0][i] != strs[n][i])
+                {
+                    return p;
+                }
+            }
+            
+            p += strs[0][i];
+        }
+        return p;
+    }
+}
