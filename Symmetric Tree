@@ -1,0 +1,40 @@
+Here is my C# solution for Symmetric Tree
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+public class Solution {
+    public bool IsSymmetric(TreeNode root) {
+        if(root == null)
+        {
+            return true;
+        }
+        
+       return IsSym(root.left, root.right);
+    }
+    
+    static bool IsSym(TreeNode Left, TreeNode Right)
+    {
+        if(Left == null && Right == null)
+        {
+            return true;
+        }
+        
+        if(Left == null || Right == null || Left.val != Right.val)
+        {
+            return false;
+        }
+        
+        return IsSym(Left.left, Right.right) && IsSym(Left.right, Right.left);
+    }
+}
