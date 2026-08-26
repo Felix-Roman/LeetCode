@@ -1,0 +1,42 @@
+Here is my C# solution for the Binary Tree Level Order Traversal on LeetCode!
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+public class Solution {
+    
+    static void LOH(TreeNode node, int level, List<IList<int>> holder)
+    {
+        if(node == null)
+        {
+            return;
+        }
+        
+        if(holder.Count <= level)
+        {
+            holder.Add(new List<int>());
+        }
+        
+        holder[level].Add(node.val);
+        
+        LOH(node.left, level + 1, holder);
+        LOH(node.right, level + 1, holder);
+    }
+    public IList<IList<int>> LevelOrder(TreeNode root) {
+        List<IList<int>> Treelist = new List<IList<int>>();
+        
+        LOH(root, 0, Treelist);
+        
+        return Treelist;
+    }
+}
