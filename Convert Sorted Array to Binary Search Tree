@@ -1,0 +1,36 @@
+Here is my C# solution for the Convert Sorted Array to Binary Search Tree LeetCode problem!
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+public class Solution {
+    public TreeNode SortedArrayToBST(int[] nums) {
+        return BSTHelperFunction(nums, 0, nums.Length - 1);
+    }
+        
+    static TreeNode BSTHelperFunction(int[] nums, int low, int high)
+    {
+        
+        if(low > high)
+        {
+            return null;
+        }
+        
+        int mid = (low + high) / 2;
+        
+        TreeNode root = new TreeNode(nums[mid], BSTHelperFunction(nums, low, mid -1), BSTHelperFunction(nums,               mid + 1, high));
+        
+        return root;
+    }
+    
+}
